@@ -200,19 +200,29 @@ public class Tripleta {
         T1.RedimencionarP(d);
         T1.Mostrar();
     }
-
-
-    public void Insertar(int d, int f, int c, int[][] M) {
+     public void Insertar(int[][] M){
         boolean b, b1;
-        int k, i;
-
+        int k, i, d,f,c;
+        
+        
+                                
+        
+            f = Integer.parseInt(JOptionPane.showInputDialog("Ingrese fila a colocar dato: "));
+            
+            c = Integer.parseInt(JOptionPane.showInputDialog("Ingrese columna a colocar dato: "));
+            if(f>=this.A[0][0]||c>=this.A[0][1])
+        {
+            JOptionPane.showMessageDialog(null, "Ha ingresado un número mayor, al número de filas o columnas de la matriz", "Dato incorrecto", 0);
+        }else{
+        
+        d = Integer.parseInt(JOptionPane.showInputDialog("Ingrese dato a insertar: "));
         b = true;
         
-
+       
         for(k=1; k<=A[0][2] && b; k++)
         {
             b1 = true;
-
+            
             if(A[k][0] == f)
             {
                 if(A[k][1] == c)
@@ -224,13 +234,26 @@ public class Tripleta {
                 {
                     if(k+1 > A[0][2])
                     {
-                        RedimensionarG();
-
-                        A[k+1][0] = f;
-                        A[k+1][1] = c;
-                        A[k+1][2] = d;
-                        b = false;
-
+                        if(A[k][1] > c)
+                        {
+                            RedimensionarG();
+                            
+                            A[k+1][0] = A[k][0];
+                            A[k+1][1] = A[k][1];
+                            A[k+1][2] = A[k][2];
+                            A[k][0] = f;
+                            A[k][1] = c;
+                            A[k][2] = d;
+                            b = false;
+                        }
+                        else
+                        {
+                            RedimensionarG();
+                            A[k+1][0] = f;
+                            A[k+1][1] = c;
+                            A[k+1][2] = d;
+                            b = false;
+                        }
                         for(i=1; i<=A[0][2]; i++)
                         {
                             if(A[i][1] == c)
@@ -238,7 +261,6 @@ public class Tripleta {
                                 b1 = false;
                             }
                         }
-
                         if(b1)
                         {
                             A[0][1] += 1;
@@ -249,19 +271,16 @@ public class Tripleta {
                         if(k==1 && A[k][1]>c)
                         {
                             RedimensionarG();
-
                             for(i=A[0][2]; i>0; i--)
                             {
                                 A[i][0] = A[i-1][0];
                                 A[i][1] = A[i-1][1];
                                 A[i][2] = A[i-1][2];
                             }
-
                             A[k][0] = f;
                             A[k][1] = c;
                             A[k][2] = d;
                             b = false;
-
                             for(i=1; i<=A[0][2]; i++)
                             {
                                 if(A[i][1] == c)
@@ -269,7 +288,6 @@ public class Tripleta {
                                     b1 = false;
                                 }
                             }
-
                             if(b1)
                             {
                                 A[0][1] += 1;
@@ -280,19 +298,16 @@ public class Tripleta {
                             if(A[k][1]<c && A[k+1][1]>c)
                             {
                                 RedimensionarG();
-
                                 for(i=A[0][2]; i>k; i--)
                                 {
                                     A[i][0] = A[i-1][0];
                                     A[i][1] = A[i-1][1];
                                     A[i][2] = A[i-1][2];
                                 }
-
                                 A[k+1][0] = f;
                                 A[k+1][1] = c;
                                 A[k+1][2] = d;
                                 b = false;
-
                                 for(i=1; i<=A[0][2]; i++)
                                 {
                                     if(A[i][1] == c)
@@ -300,7 +315,6 @@ public class Tripleta {
                                         b1 = false;
                                     }
                                 }
-
                                 if(b1)
                                 {
                                     A[0][1] += 1;
@@ -315,11 +329,31 @@ public class Tripleta {
                 if(k+1 > A[0][2])
                 {
                     RedimensionarG();
+                    if(A[k][0] > f)
+                    {
+                        RedimensionarG();
 
                     A[k+1][0] = f; //
                     A[k+1][1] = c;
                     A[k+1][2] = d;
                     b = false;
+                        A[k+1][0] = A[k][0];
+                        A[k+1][1] = A[k][1];
+                        A[k+1][2] = A[k][2];
+                        A[k][0] = f;
+                        A[k][1] = c;
+                        A[k][2] = d;
+                        b = false;
+                    }
+                    else
+                    {
+                        RedimensionarG();
+
+                        A[k+1][0] = f; 
+                        A[k+1][1] = c;
+                        A[k+1][2] = d;
+                        b = false;
+                    }
 
                     for(i=1; i<=A[0][2]; i++)
                     {
@@ -328,7 +362,6 @@ public class Tripleta {
                             b1 = false;
                         }
                     }
-
                     if(b1)
                     {
                         A[0][0] += 1;
@@ -339,19 +372,16 @@ public class Tripleta {
                     if(k==1 && A[k][0]>f)
                     {
                         RedimensionarG();
-
                         for(i=A[0][2]; i>0; i--)
                         {
                             A[i][0] = A[i-1][0];
                             A[i][1] = A[i-1][1];
                             A[i][2] = A[i-1][2];
                         }
-
                         A[k][0] = f;
                         A[k][1] = c;
                         A[k][2] = d;
                         b = false;
-
                         for(i=1; i<=A[0][2]; i++)
                         {
                             if(A[i][0] == f)
@@ -359,7 +389,6 @@ public class Tripleta {
                                 b1 = false;
                             }
                         }
-
                         if(b1)
                         {
                             A[0][0] += 1;
@@ -370,19 +399,16 @@ public class Tripleta {
                         if(A[k][0]<f && A[k+1][0]>f)
                         {
                             RedimensionarG();
-
                             for(i=A[0][2]; i>k; i--)
                             {
                                 A[i][0] = A[i-1][0];
                                 A[i][1] = A[i-1][1];
                                 A[i][2] = A[i-1][2];
                             }
-
                             A[k+1][0] = f;
                             A[k+1][1] = c;
                             A[k+1][2] = d;
                             b = false;
-
                             for(i=1; i<=A[0][2]; i++)
                             {
                                 if(A[i][0] == f)
@@ -390,7 +416,6 @@ public class Tripleta {
                                     b1 = false;
                                 }
                             }
-
                             if(b1)
                             {
                                 A[0][0] += 1;
@@ -399,12 +424,11 @@ public class Tripleta {
                     } 
                 }
             }
-            M[f][c] = d;
         }
-    
+        M[f][c] = d;
+       }
         Mostrar();
     }
-    
      public void RedimensionarG(){
         int i, k=0;
         Tripleta T = new Tripleta(A[0][2]+1);
@@ -427,6 +451,7 @@ public class Tripleta {
         boolean b=true;
         Tripleta T;
         int c,k=0,f;
+        JOptionPane.showMessageDialog(null, "Observa la posición ddel dato que quieres eliminar en la tripleta", "Posición Eliminar", 3);
         this.Mostrar();
         f= val.Validar_int("""
                            Ingresa el n\u00famero de fila donde est\u00e1 ubicado el dato

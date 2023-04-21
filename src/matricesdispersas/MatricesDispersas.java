@@ -77,11 +77,9 @@ public class MatricesDispersas {
                             }
                             case 4->
                             {
-                                d = Integer.parseInt(JOptionPane.showInputDialog("Ingrese dato a insertar: "));
-                                int f = Integer.parseInt(JOptionPane.showInputDialog("Ingrese fila a colocar dato: "));
-                                int c = Integer.parseInt(JOptionPane.showInputDialog("Ingrese columna a colocar dato: "));
+                               
 
-                                T.Insertar(d, f, c, M);
+                                T.Insertar(M);
                                 m.Mostrar(M);
                                 
                             }
@@ -211,7 +209,7 @@ public class MatricesDispersas {
                             }
                             case 5->
                             {
-                                
+                                F1.Eliminar(M);
                             }
                             case 6 ->
                             {
@@ -237,7 +235,67 @@ public class MatricesDispersas {
                 {
                     F2=new Forma2(M.length, M[0].length);
                     F2.Crear(M);
-                    F2.MostrarF2();
+                    do
+                    {
+
+                        op = Val.Validar_int("""   
+                                                Menú Tripletas Forma 2 
+                                                                                                                                                  
+                                            1. Mostrar Forma 2
+                                            2. Suma de filas.
+                                            3. Suma de Columnas.
+                                            4. Insertar un dato.
+                                            5. Eliminar un dato.
+                                            6. Ver matriz inicial
+                                            7. Operaciones Forma 2
+                                            8. Volver al menú principal.
+                                            """);
+                        switch (op)
+                        {
+
+                            case 1 ->
+                            {
+                                F2.MostrarF2();
+                            }
+                            case 2->
+                            {
+                                F2.SumarFilas();
+                            }
+                            case 3 ->
+                            {
+                                F2.SumarColumnas();
+                            }
+                            case 4->
+                            {
+                                
+                            }
+                            case 5->
+                            {
+                                F2.Eliminar(M);
+                            }
+                            case 6 ->
+                            {
+                                m.Mostrar(M);
+                            }
+                            case 7->
+                            {
+                                
+                            }
+                            case 8 ->
+                            {
+
+                            }
+
+                            default ->
+                            {
+                                JOptionPane.showMessageDialog(null, "Opción incorrecta", "Escoge otra opción", 2);
+                            }
+                        }
+                    } while (op != 8);
+                    
+                    
+                        
+                    
                 }
 
                 case 0 ->

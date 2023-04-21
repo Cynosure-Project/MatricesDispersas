@@ -1,5 +1,5 @@
 package matricesdispersas;
-
+import Utilidades.Validar;
 import javax.swing.JOptionPane;
 import Utilidades.Nodo;
 
@@ -117,6 +117,55 @@ public class Forma1 {
         }
         JOptionPane.showMessageDialog(null, s);
     }
+     public void Eliminar( int [][]M) {
+        Nodo P, Q, R, x;
+        Validar val =new Validar();
+        int f,c;
+        P = Punta.getLiga();
+        R = P;
+        Q = P.getLf();
+        boolean b = true;
+        JOptionPane.showMessageDialog(null, "Observa la posición ddel dato que quieres eliminar en la tripleta", "Posición Eliminar F1", 3);
+        this.MostrarF1();
+        f= val.Validar_int("""
+                           Ingresa el n\u00famero de fila donde est\u00e1 ubicado el dato
+                           (Teniendo en cuenta que la ubicaci\u00f3n inicia en 0)""");
+        c = val.Validar_int("Ingresa el número de columna donde está ubicado el dato");
+        if(f>=Punta.getFila()||c>=Punta.getColumna())
+        {
+            JOptionPane.showMessageDialog(null, "Ha ingresado un número mayor, al número de filas o columnas de la matriz", "Dato incorrecto", 0);
+        }
+        else
+        {
+        while (P != Punta && b)
+        {
+            while (Q != P && b)
+            {
+                if (Q.getFila() == f && Q.getColumna() == c)
+                {
+                    R.setLf(Q.getLf());
+                    b = false;
+                }
+                R = Q;
+                Q = Q.getLf();
+            }
+            P = P.getLiga();
+            Q = P.getLf();
+            R = P;
+        }
+        Paso3();
+        if(b)
+            {
+                JOptionPane.showMessageDialog(null, "No existe dato en esta posición", "Dato no encontrado", 2);
+            }else
+            {
+                JOptionPane.showMessageDialog(null, "Se ha eliminado exitosamente", "Dato encontrado", 3);
+            }
+            M[f][c] = 0; 
+            this.MostrarF1();
+        }
+    }
+     
     public void SumarFilas() {
         int i = 0, vf[] = new int[Punta.getFila()];
         Nodo P = Punta.getLiga(), Q = P.getLf();
@@ -141,16 +190,14 @@ public class Forma1 {
         JOptionPane.showMessageDialog(null, s);
     }
 
+    
     public void MostrarF1() {
-        Nodo P, Q;
+        Nodo P=Punta.getLiga(), Q=P.getLf();
         String s = "[" + Punta.getFila() + "][" + Punta.getColumna() + "]\n";
         boolean r = true;
         int i = 0;
-        P = Punta.getLiga();
-        Q = P.getLf();
         while (P != Punta)
         {
-
             while (Q != P)
             {
                 if (r)
@@ -167,7 +214,6 @@ public class Forma1 {
             if (i == 0)
             {
                 s = s + "[" + P.getFila() + "][" + P.getColumna() + "]<-\n";
-
             } else
             {
                 s = s + "\n";
@@ -176,7 +222,6 @@ public class Forma1 {
             r = true;
             P = P.getLiga();
             Q = P.getLf();
-
         }
         JOptionPane.showMessageDialog(null, s, "Mostrar Tripleta Forma 1", 3);
     }
