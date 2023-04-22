@@ -200,7 +200,8 @@ public class Tripleta {
         T1.RedimencionarP(d);
         T1.Mostrar();
     }
-     public void Insertar(int[][] M){
+  
+    public void Insertar(int[][] M){
         boolean b, b1;
         int k, i, d, f, c;
         
